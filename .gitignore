@@ -2,6 +2,11 @@
 .idea/
 gradle/
 build/
+target/
+
+*.iml
+*.ipr
+*.iws
 
 gradlew
 gradlew.bat
