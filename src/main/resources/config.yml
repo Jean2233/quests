@@ -1,0 +1,16 @@
+quests:
+  quest01: # quest-id
+    # AVAILABLE TYPES = WALK, BREAK, PLACE, COMMAND, KILL_MOBS
+    quest-type: 'BREAK'
+    # requirement to complete quest
+    requirement: 10
+    # commands to run when complete
+    commands:
+      - 'give @player stone 10'
+      - 'say @player completed quest @questId'
+  quest02:
+    quest-type: 'WALK'
+    requirement: 100
+    commands:
+      - 'give @player diamond 5'
+      - 'say @player completed quest @questId'

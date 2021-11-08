@@ -1,0 +1,42 @@
+package com.github.jean2233.quests.data.quest;
+
+import com.github.jean2233.quests.loader.impl.QuestDataLoader;
+import com.github.jean2233.quests.loader.impl.QuestLoader;
+import lombok.Getter;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class QuestRegistry {
+
+    @Getter
+    private final Set<Quest> quests = new HashSet<>();
+
+    public void registerQuests(FileConfiguration configuration) {
+        final QuestLoader questLoader = new QuestLoader(new QuestDataLoader());
+
+        final ConfigurationSection mainSection = configuration.getConfigurationSection("quests");
+        if(mainSection == null) return;
+
+        for (String key : mainSection.getKeys(false)) {
+            final ConfigurationSection questSection = mainSection.getConfigurationSection(key);
+
+            final Quest quest = questLoader.load(key, questSection);
+            if(quest == null) continue;
+
+            registerQuest(quest);
+        }
+    }
+
+    public Quest getById(String id) {
+        return quests.stream().filter(
+          quest -> quest.getId().equalsIgnoreCase(id)
+        ).findFirst().orElse(null);
+    }
+
+    private void registerQuest(Quest quest) {
+        quests.add(quest);
+    }
+}
