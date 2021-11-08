@@ -1,0 +1,5 @@
+name: Quests
+version: '${version}'
+main: com.github.jean2233.quests.QuestsPlugin
+api-version: 1.17
+authors: [ _harmonyguy ]
