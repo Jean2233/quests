@@ -43,6 +43,15 @@ public class Account {
         final Player player = Bukkit.getPlayer(id);
         assert player != null;
 
+        final QuestData data = quest.getData();
+        data.getCommands().forEach(command -> {
+            Bukkit.dispatchCommand(
+              Bukkit.getConsoleSender(), command
+                .replace("@player", player.getName())
+                .replace("@questId", quest.getId())
+            );
+        });
+
         player.sendMessage("§aQuest completed successfully!");
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
 
