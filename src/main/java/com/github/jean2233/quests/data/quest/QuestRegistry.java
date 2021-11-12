@@ -6,13 +6,13 @@ import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuestRegistry {
 
     @Getter
-    private final Set<Quest> quests = new HashSet<>();
+    private final List<Quest> quests = new ArrayList<>();
 
     public void registerQuests(FileConfiguration configuration) {
         final QuestLoader questLoader = new QuestLoader(new QuestDataLoader());
@@ -20,11 +20,16 @@ public class QuestRegistry {
         final ConfigurationSection mainSection = configuration.getConfigurationSection("quests");
         if(mainSection == null) return;
 
+        System.out.println(mainSection);
+
         for (String key : mainSection.getKeys(false)) {
             final ConfigurationSection questSection = mainSection.getConfigurationSection(key);
+            System.out.println(questSection);
 
             final Quest quest = questLoader.load(key, questSection);
             if(quest == null) continue;
+
+            System.out.println(quest.toString());
 
             registerQuest(quest);
         }
