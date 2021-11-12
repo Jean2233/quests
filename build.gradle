@@ -21,7 +21,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-    implementation 'com.github.DevNatan:inventory-framework:2.2.1'
+    implementation 'com.github.DevNatan:inventory-framework:v2.0.3'
 
     compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
 }
