@@ -20,16 +20,11 @@ public class QuestRegistry {
         final ConfigurationSection mainSection = configuration.getConfigurationSection("quests");
         if(mainSection == null) return;
 
-        System.out.println(mainSection);
-
         for (String key : mainSection.getKeys(false)) {
             final ConfigurationSection questSection = mainSection.getConfigurationSection(key);
-            System.out.println(questSection);
 
             final Quest quest = questLoader.load(key, questSection);
             if(quest == null) continue;
-
-            System.out.println(quest.toString());
 
             registerQuest(quest);
         }

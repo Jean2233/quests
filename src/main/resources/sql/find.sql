@@ -1,0 +1,1 @@
+SELECT * FROM `quest_accounts` WHERE id=?;

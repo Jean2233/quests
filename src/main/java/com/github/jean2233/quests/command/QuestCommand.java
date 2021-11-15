@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public record QuestCommand(AccountFactory factory, ViewFrame viewFrame) implements CommandExecutor {
+public record QuestCommand(AccountRegistry registry, ViewFrame viewFrame) implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)) return false;
@@ -22,7 +22,7 @@ public record QuestCommand(AccountFactory factory, ViewFrame viewFrame) implemen
         final Player player = (Player) sender;
         final UUID playerId = player.getUniqueId();
 
-        final Account account = factory.getById(playerId);
+        final Account account = registry.getById(playerId);
         if(account == null) return false;
 
         viewFrame.open(QuestView.class, player, ImmutableMap.of("account", account));

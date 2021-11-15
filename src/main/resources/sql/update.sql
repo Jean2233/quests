@@ -1,0 +1,1 @@
+UPDATE `quest_accounts` SET quest=?, progress=?, finished_quests=?;

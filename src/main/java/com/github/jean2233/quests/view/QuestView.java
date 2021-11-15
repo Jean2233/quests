@@ -47,10 +47,10 @@ public class QuestView extends PaginatedView<Quest> {
             final Account account = context.get("account");
             if(account.isFinished(quest)) return;
 
-            final Quest currentQuest = account.getQuest();
-            if (currentQuest != null && currentQuest.equals(quest)) return;
+            final String currentQuest = account.getQuestId();
+            if (currentQuest != null && currentQuest.equals(quest.getId())) return;
 
-            account.setQuest(quest);
+            account.setQuestId(quest.getId());
             account.setProgress(0);
 
             player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 1F, 1F);
@@ -73,8 +73,8 @@ public class QuestView extends PaginatedView<Quest> {
         if(account.isFinished(quest)) {
             builder.addLoreLine("§cFinished");
         } else {
-            final Quest currentQuest = account.getQuest();
-            if (currentQuest == null || !currentQuest.equals(quest)) {
+            final String currentQuest = account.getQuestId();
+            if (currentQuest == null || !currentQuest.equals(quest.getId())) {
                 builder.addLoreLine("§aClick to start");
             } else {
                 builder.addLoreLine("§fProgress: §7" + account.getProgress() + "/" + data.getRequirement());

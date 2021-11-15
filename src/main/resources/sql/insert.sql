@@ -1,0 +1,1 @@
+INSERT INTO `quest_accounts` VALUES (?,?,?,?);
